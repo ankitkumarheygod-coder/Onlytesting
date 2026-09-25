@@ -1,0 +1,10 @@
+.options-grid { display: grid; gap: 12px; margin-top: 20px; }
+.option-btn { background: #334155; color: white; text-align: left; border: 1px solid #475569; min-height: 50px; font-size: 16px; }
+.question-text { font-size: 1.2rem; margin-bottom: 20px; font-weight: 600; }
+#notes-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; padding: 20px; justify-content: center; align-items: center; }
+#notes-modal.active { display: flex; }
+.notes-card { background: var(--card-bg); padding: 25px; border-radius: 12px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; border: 2px solid var(--danger); }
+.notes-warning { background: rgba(239, 68, 68, 0.2); padding: 10px; border-left: 3px solid var(--danger); margin-top: 15px; }
+#debug-panel { position: fixed; bottom: 0; right: 0; background: #000; padding: 10px; border: 1px solid #333; font-size: 12px; z-index: 9999; }
+#debug-panel button { padding: 5px; font-size: 12px; display: block; margin: 5px 0; width: 100%; }
+#error-screen { background: var(--danger); color: white; text-align: center; }
