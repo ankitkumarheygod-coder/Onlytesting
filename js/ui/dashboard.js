@@ -27,10 +27,14 @@ export const DashboardUI = {
         });
         
         events.on('REVISION_DAY_FAILED', (data) => {
-            alert(`⚠️ Score: ${(data.scoreRatio * 100).toFixed(0)}%\n${config.revision.passPercentage*100}% (90% Rule) आवश्यक है।\nफिर से Revision आवश्यक!`);
+            // BUG FIX: Clean percentage formatting for UI
+            const scorePercent = Math.round(data.scoreRatio * 100);
+            const targetPercent = Math.round(config.revision.passPercentage * 100);
+            alert(`⚠️ Score: ${scorePercent}%\n${targetPercent}% (90% Rule) आवश्यक है।\nफिर से Revision आवश्यक!`);
             this.render();
         });
     },
+    // ... rest of the render() function remains completely unchanged
     render() {
         const rev = State.current.revision;
         const dash = document.getElementById('dashboard-content');
