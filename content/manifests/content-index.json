@@ -1,0 +1,12 @@
+{
+  "chapters": [
+    {
+      "id": "solid-state",
+      "title": "ठोस अवस्था",
+      "subject": "Chemistry",
+      "questionFile": "content/questions/chemistry-solid-state.json",
+      "notesFile": "content/notes/chemistry-solid-state.json",
+      "enabled": true
+    }
+  ]
+}
