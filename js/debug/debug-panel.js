@@ -15,6 +15,7 @@ export const DebugPanel = {
         document.getElementById('dbg-month').onclick = () => {
             State.current.revision.nextRevisionDueAt = Date.now() - 1000;
             State.save();
+            RevisionTracker.progressDay(); // Triggers refresh safely
             RevisionTracker.checkMonthlyDue();
             DashboardUI.render();
         };
@@ -26,8 +27,15 @@ export const DebugPanel = {
 
         document.getElementById('dbg-pass').onclick = () => {
             const cycle = State.current.revision.currentCycle;
-            cycle.completedQuestions = cycle.batchSize;
-            cycle.correctAnswers = cycle.batchSize; // 100%
+            // BUG FIX: Make Force Pass simulate real question length 
+            const actualCount = cycle.inProgressIds.length > 0 ? cycle.inProgressIds.length : 2;
+            
+            if (cycle.inProgressIds.length === 0) {
+                cycle.inProgressIds = new Array(actualCount).fill('debug-skip');
+            }
+            cycle.completedQuestions = actualCount;
+            cycle.correctAnswers = actualCount; // 100%
+            
             RevisionTracker.progressDay();
             DashboardUI.render();
         };
