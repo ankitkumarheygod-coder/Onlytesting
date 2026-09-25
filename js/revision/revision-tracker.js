@@ -27,9 +27,18 @@ export const RevisionTracker = {
     },
     progressDay() {
         const cycle = State.current.revision.currentCycle;
-        const scoreRatio = cycle.correctAnswers / cycle.batchSize;
+        
+        // BUG FIX: Use the actual number of questions in the current batch, 
+        // NOT the requested config maximum (batchSize).
+        const actualQuestionCount = cycle.inProgressIds.length;
+        
+        // Prevent division by zero if empty
+        const scoreRatio = actualQuestionCount > 0 
+            ? (cycle.correctAnswers / actualQuestionCount) 
+            : 0;
         
         if (scoreRatio >= config.revision.passPercentage) {
+            // Pass logic - Progress to next day
             cycle.day++;
             cycle.completedQuestions = 0;
             cycle.correctAnswers = 0;
@@ -42,12 +51,12 @@ export const RevisionTracker = {
                 events.emit('REVISION_DAY_COMPLETED', cycle.day - 1);
             }
         } else {
-            // Failed 90% rule, repeat day
+            // Fail logic - Failed 90% rule, repeat day
             cycle.completedQuestions = 0;
             cycle.correctAnswers = 0;
             cycle.currentQuestionIndex = 0;
             cycle.inProgressIds = [];
-            events.emit('REVISION_DAY_FAILED', { scoreRatio });
+            events.emit('REVISION_DAY_FAILED', { scoreRatio, actualQuestionCount });
         }
         State.save();
     },
