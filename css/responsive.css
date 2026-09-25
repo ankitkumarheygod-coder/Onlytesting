@@ -1,0 +1,5 @@
+/* Mobile First Design */
+@media (min-width: 600px) {
+    .options-grid { grid-template-columns: 1fr 1fr; }
+    body { max-width: 800px; margin: 0 auto; }
+}
