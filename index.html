@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level Building Widget — Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="demo-wrap">
+  <p class="demo-title">3D Level Building Widget — Demo Page<br>(production widget markup is just the single card below)</p>
+
+  <div class="demo-row">
+    <!-- ===== THIS IS THE ONLY MARKUP THE REAL WEBSITE NEEDS ===== -->
+    <div id="levelBuildingWidget" class="level-building-card"></div>
+  </div>
+
+  <div id="lbTestPanel" class="lb-test-panel" style="display:none;">
+    <h3>Test Panel (DEMO_MODE only)</h3>
+    <div class="lb-test-readout" id="lbReadout">—</div>
+    <div class="lb-test-row">
+      <button data-act="level-minus">Level −1</button>
+      <button data-act="level-plus">Level +1</button>
+    </div>
+    <div class="lb-test-row">
+      <button data-act="pct-minus">Pct −10</button>
+      <button data-act="pct-plus">Pct +10</button>
+    </div>
+    <div class="lb-test-row">
+      <button data-act="stage-jump">Jump to Next Stage Start</button>
+    </div>
+    <div class="lb-test-row">
+      <button data-act="run-tests">Run All Boundary Test Cases</button>
+    </div>
+    <div class="lb-test-status" id="lbTestStatus"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
